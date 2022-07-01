@@ -1,0 +1,4 @@
+[OBJECT_PATH]
+0,C:\Users\manao\Desktop\eclipse 2022\workspace\KUTC\src\game\object 1.png
+1,C:\Users\manao\Desktop\eclipse 2022\workspace\KUTC\src\game\object 2.png
+2,C:\Users\manao\Desktop\eclipse 2022\workspace\KUTC\src\game\object 3.png
