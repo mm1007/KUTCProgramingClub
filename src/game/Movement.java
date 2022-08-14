@@ -41,15 +41,15 @@ public class Movement {
 						time2.start();
 					}
 					if (Key.key[2] == 1 && collision_check(2) == false) {
-						move_obj(2, -10);
+						move_obj(2, 10);
 						player_x -= 10;
 					}
 					if (Key.key[3] == 1 && collision_check(3) == false) {
-						move_obj(3, 10);
+						move_obj(3, -10);
 						player_x += 10;
 					}
 					if (collision_check(1) == false && jump_c == false) {
-						move_obj(1, 15);
+						move_obj(1, -15);
 						player_y += 15;
 					}
 					if (collision_stack() == true) {
@@ -83,19 +83,19 @@ public class Movement {
 		int time = 0;
 		try {
 			for (int t = 0, i = Frist.object.length; t < i; t++) {
-				Frist.object[t][x_y[key][0]] += x_y[key][1];
+				Frist.object[t][x_y[key][0]] += move;
 			}
 			for (int t = 0, i = Frist.enemy_list; t < i; t++) {
-				Frist.enemy[t][x_y[key][0]] += x_y[key][1];
+				Frist.enemy[t][x_y[key][0]] += move;
 			}
 			for (Bullet b : MainCanvas.bullet) {
 				if (key == 2 || key == 3) {
 					MainCanvas.bullet.set(time,
-							new NomalBullet(b.getPos()[0] + x_y[key][1], b.getPos()[1], b.getAngle()));
+							new NomalBullet(b.getPos()[0] + move, b.getPos()[1], b.getAngle()));
 				}
 				if (key == 0 || key == 1) {
 					MainCanvas.bullet.set(time,
-							new NomalBullet(b.getPos()[0], b.getPos()[1] + x_y[key][1], b.getAngle()));
+							new NomalBullet(b.getPos()[0], b.getPos()[1] + move, b.getAngle()));
 				}
 				time++;
 			}
@@ -110,7 +110,7 @@ public class Movement {
 				boolean i = collision_check(0);
 				if (i == false) {
 					x_y[0][1] = jump_f;
-					move_obj(0);
+					move_obj(0,jump_f);
 					player_y -= jump_f;
 					jump_f -= 1;
 				}
@@ -122,7 +122,7 @@ public class Movement {
 					int jump_f_l = jump_last() / 2;
 					if (jump_f_l > 0) {
 						x_y[0][1] = jump_f_l;
-						move_obj(0);
+						move_obj(0,jump_f_l);
 						player_y -= jump_f_l;
 					} else {
 						jump_c = false;
