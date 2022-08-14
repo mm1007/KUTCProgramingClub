@@ -1,2 +1,1 @@
 # KUTCProgramingClub
-あああ
