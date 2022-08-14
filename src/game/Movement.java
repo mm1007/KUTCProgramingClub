@@ -80,6 +80,7 @@ public class Movement {
 	};
 
 	void move_obj(int key, int move) {
+		System.out.println(key);
 		int time = 0;
 		try {
 			for (int t = 0, i = Frist.object.length; t < i; t++) {
