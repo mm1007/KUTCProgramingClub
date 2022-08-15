@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 
 abstract public class Bullet {
 	BufferedImage img;
-	int x;
-	int y;
+	public int x;
+	public int y;
 	double angle;
 	int W, H;
 	int speed = 20;

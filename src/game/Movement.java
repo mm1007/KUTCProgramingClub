@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import game.Bullet.Bullet;
-import game.Bullet.NomalBullet;
 import game.Game.MainCanvas;
 
 /**
@@ -53,15 +52,15 @@ public class Movement {
 						time2.start();
 					}
 					if (Key.key[KeyEvent.VK_A] && collision_check(2, 10) == false) {
-						move_obj(2, 10);
+						move_obj(10, 0);
 						player_x -= 10;
 					}
 					if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
-						move_obj(3, -10);
+						move_obj(-10, 0);
 						player_x += 10;
 					}
 					if (collision_check(1, 15) == false && jump_c == false) {
-						move_obj(1, -15);
+						move_obj(0, -15);
 						player_y += 15;
 					}
 					if (collision_stack() == true) {
@@ -94,28 +93,27 @@ public class Movement {
 	};
 
 	/**
-	 * key方向にmoveだけ動かす。　また動かすオブジェクトを追加する場合は別途追加もしくわオーバーライドしてください。
-	 * @param key　方向
-	 * @param move 移動距離
+	 * プレイヤーを移動させるためのメソッドです。x,yでどのくらい動かすか指定します。また当たり判定の確認は行いませんので、collision_checkを別途使用してください。
+	 * @param x　移動させたいX値
+	 * @param y 移動させたいY値
 	 */
-	public void move_obj(int key, int move) {
+	public void move_obj(int x, int y) {
 		int time = 0;
 		try {
 			for (int t = 0, i = Frist.object.length; t < i; t++) {
-				Frist.object[t][x_y[key]] += move;
+				Frist.object[t][1] += x;
+				Frist.object[t][2] += y;
 			}
 			for (int t = 0, i = Frist.enemy_list; t < i; t++) {
-				Frist.enemy[t][x_y[key]] += move;
+				Frist.enemy[t][1] += x;
+				Frist.enemy[t][2] += y;
 			}
 			for (Bullet b : MainCanvas.bullet) {
-				if (key == 2 || key == 3) {
-					MainCanvas.bullet.set(time,
-							new NomalBullet(b.getPos()[0] + move, b.getPos()[1], b.getAngle()));
-				}
-				if (key == 0 || key == 1) {
-					MainCanvas.bullet.set(time,
-							new NomalBullet(b.getPos()[0], b.getPos()[1] + move, b.getAngle()));
-				}
+				//MainCanvas.bullet.set(time,
+				//new NomalBullet(b.getPos()[0] + move, b.getPos()[1], b.getAngle()));
+				MainCanvas.bullet.get(time).x += x;
+				MainCanvas.bullet.get(time).y += y;
+
 				time++;
 			}
 		} catch (ArrayIndexOutOfBoundsException e1) {
@@ -250,7 +248,7 @@ public class Movement {
 
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param g
