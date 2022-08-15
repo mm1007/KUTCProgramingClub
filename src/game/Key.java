@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 public class Key implements KeyListener {
 	
+	
 	static boolean key[] = new boolean[KeyEvent.KEY_LAST];
 	
 
