@@ -7,10 +7,8 @@ import java.io.IOException;
 public class Map_Loader extends Frist {
 	static void Load_Map() throws IOException {
 		BufferedReader br_enemy = new BufferedReader(new FileReader(file + "enemy_list.txt"));
-		BufferedReader br_obj_path = new BufferedReader(
-				new FileReader(file + "object_path.txt"));
-		BufferedReader br_obj = new BufferedReader(
-				new FileReader(file + "object.txt"));
+		BufferedReader br_obj_path = new BufferedReader(new FileReader(file + "object_path.txt"));
+		BufferedReader br_obj = new BufferedReader(new FileReader(file + "object.txt"));
 		String text = br_obj.readLine();
 		object_list = Integer.parseInt(text.substring(text.indexOf("=") + 2));
 		int time = 0;
@@ -23,10 +21,12 @@ public class Map_Loader extends Frist {
 		while ((text = br_obj.readLine()) != null) {
 			int first_c = text.indexOf(",");
 			int second_c = text.indexOf(",", first_c + 1);
+			int third_c = text.indexOf(",", second_c + 1);
 			object[time][0] = Character.getNumericValue(text.charAt(0));
 			System.out.println(object[time][0]);
 			object[time][1] = Integer.parseInt(text.substring(first_c + 1, second_c));
-			object[time][2] = Integer.parseInt(text.substring(second_c + 1, text.length()));
+			object[time][2] = Integer.parseInt(text.substring(second_c + 1, third_c));
+			object_scale[time] = Float.parseFloat(text.substring(third_c + 1));
 			time++;
 		}
 		time = 0;
