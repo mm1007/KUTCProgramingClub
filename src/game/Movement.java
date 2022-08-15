@@ -43,6 +43,7 @@ public class Movement {
 	 */
 	ActionListener action_1 = new ActionListener() {
 		@Override
+		//game
 		public void actionPerformed(ActionEvent e) {
 			try {
 				if (move_c() == true) {

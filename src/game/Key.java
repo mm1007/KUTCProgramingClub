@@ -7,9 +7,6 @@ public class Key implements KeyListener {
 	
 	static boolean key[] = new boolean[KeyEvent.KEY_LAST];
 	
-	static int key_list[] = {
-			KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_SPACE
-	};
 
 	@Override
 	public void keyTyped(KeyEvent e) {
