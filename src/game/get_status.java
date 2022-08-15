@@ -7,7 +7,7 @@ public class get_status {
 	 * @param KeyCode　確認したいキーコード
 	 * @return　押されている場合trueを返します。
 	 */
-	public boolean get_key_press(int KeyCode) {
+	public static boolean get_key_press(int KeyCode) {
 		return Key.key[KeyCode];
 	}
 	
