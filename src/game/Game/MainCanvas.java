@@ -26,7 +26,7 @@ public class MainCanvas extends JPanel {
 	public static List<Bullet> bullet = new ArrayList<Bullet>();
 
 	public MainCanvas() {
-		System.out.println("OK");
+		System.out.println(Frist.enemy_list);
 		setBackground(Color.white);
 		for (int t = 0, i = Frist.enemy_list; t < i; t++) {
 			enemy.add(new Cat(Frist.enemy[t][1], Frist.enemy[t][2]));

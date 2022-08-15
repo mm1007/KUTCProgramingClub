@@ -8,8 +8,10 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 public class Frist {
+	public static float[] object_scale = new float[1000];
 	public static int[][] object = new int[1000][3];
 	public static String[] object_path = new String[1000];
+	public static String[] enemy_path = new String[1000];
 	public static int[][] enemy = new int[1000][3];
 	public static int enemy_list;
 	public static int object_list;

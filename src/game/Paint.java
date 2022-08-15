@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -73,7 +74,7 @@ class Paint extends JPanel {
 			g.drawImage(ImageIO.read(new File(Frist.object_path[0])), Frist.player_x, Frist.player_y, this);
 		} catch (IOException e) {
 		}
-		if (Key.key[4] == 1) {
+		if (Key.key[KeyEvent.VK_SPACE]) {
 			Movement.graple(g);
 		}
 	}

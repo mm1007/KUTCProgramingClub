@@ -1,6 +1,6 @@
 [OBJECT_PATH]
 0,object 1.png
-1,object 2.png
-2,object 3.png
+1,object 4.png
+2,object 4.png
 3,object 4.png
 4,Image\Cat.png
