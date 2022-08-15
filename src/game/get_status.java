@@ -1,7 +1,6 @@
 package game;
 
-public class get_status {
-
+abstract public class get_status {
 	/**
 	 * 指定したキーが押されているかbooleanで返します。
 	 * @param KeyCode　確認したいキーコード
@@ -10,6 +9,4 @@ public class get_status {
 	public static boolean get_key_press(int KeyCode) {
 		return Key.key[KeyCode];
 	}
-	
-	
 }
