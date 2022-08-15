@@ -1,1 +1,4 @@
+[ENEMY_PATH]
+0,Image\Cat.png
 [ENEMY_LIST]
+0,100,300
