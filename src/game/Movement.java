@@ -22,6 +22,8 @@ import game.Game.MainCanvas;
 public class Movement {
 	boolean jump_c = false;
 	int jump_f = 0;
+	int gravity = 1;
+	int gravity_f = 1;
 	Timer time;
 	Timer time2;
 	public static int player_x = Frist.player_x;
@@ -46,26 +48,32 @@ public class Movement {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				if (move_c() == true) {
-					if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 10) == true) {
+					if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1) == true) {
+						System.out.println("start jamp");
 						jump_f = 30;
 						jump_c = true;
 						time2.start();
 					}
 					if (Key.key[KeyEvent.VK_A] && collision_check(2, 10) == false) {
 						move_obj(10, 0);
-						player_x -= 10;
+						//player_x -= 10;
 					}
 					if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
 						move_obj(-10, 0);
-						player_x += 10;
+						//player_x += 10;
 					}
-					if (collision_check(1, 15) == false && jump_c == false) {
-						move_obj(0, -15);
-						player_y += 15;
+					if (collision_check(1, gravity_f - 1) == false && jump_c == false) {
+						System.out.println("落下");
+						move_obj(0, -gravity_f);
+						//player_y += gravity_f;
+						gravity_f += gravity;
+					} else if (collision_check(1, gravity_f) == true) {
+						gravity_f = 1;
 					}
 					if (collision_stack() == true) {
+						gravity_f = 0;
 						move_obj(0, 1);
-						player_y -= 1;
+						//player_y -= 1;
 					}
 				}
 			} catch (ArrayIndexOutOfBoundsException e1) {
@@ -100,6 +108,8 @@ public class Movement {
 	public void move_obj(int x, int y) {
 		int time = 0;
 		try {
+			player_x -= x;
+			player_y -= y;
 			for (int t = 0, i = Frist.object.length; t < i; t++) {
 				Frist.object[t][1] += x;
 				Frist.object[t][2] += y;
@@ -127,10 +137,11 @@ public class Movement {
 				boolean i = collision_check(0, jump_f);
 				if (i == false) {
 					move_obj(0, jump_f);
-					player_y -= jump_f;
-					jump_f -= 1;
+					//player_y -= jump_f;
+					jump_f -= gravity;
 				}
 				if (jump_f <= 0) {
+					//System.out.println("落下");
 					jump_c = false;
 					time2.stop();
 				}
@@ -138,7 +149,7 @@ public class Movement {
 					int jump_f_l = jump_last() / 2;
 					if (jump_f_l > 0) {
 						move_obj(0, jump_f_l);
-						player_y -= jump_f_l;
+						//player_y -= jump_f_l;
 					} else {
 						jump_c = false;
 						time2.stop();
@@ -161,7 +172,7 @@ public class Movement {
 		for (int t = 0, i = colision_k[key]; t < i; t++) {
 			if (key == 0 && colision[player_x + t][player_y - move] == 1) {
 				return true;
-			} else if (key == 1 && colision[player_x + t][player_y + colision_k[key]] == 1) {
+			} else if (key == 1 && colision[player_x + t][player_y + colision_k[key] + move] == 1) {
 				return true;
 			} else if (key == 2 && colision[player_x - move][player_y + t] == 1) {
 				return true;
