@@ -22,8 +22,8 @@ import game.Game.MainCanvas;
 public class Movement {
 	boolean jump_c = false;
 	int jump_f = 0;
-	int gravity = 1;
-	int gravity_f = 1;
+	static int gravity_acceleration = 1;
+	static int acceleration = 0;
 	Timer time;
 	Timer time2;
 	public static int player_x = Frist.player_x;
@@ -62,16 +62,15 @@ public class Movement {
 						move_obj(-10, 0);
 						//player_x += 10;
 					}
-					if (collision_check(1, gravity_f - 1) == false && jump_c == false) {
-						System.out.println("落下");
-						move_obj(0, -gravity_f);
+					if (collision_check(1, acceleration - 1) == false && jump_c == false) {
+						move_obj(0, -acceleration);
 						//player_y += gravity_f;
-						gravity_f += gravity;
-					} else if (collision_check(1, gravity_f) == true) {
-						gravity_f = 1;
+						acceleration += gravity_acceleration;
+					} else if (collision_check(1, acceleration) == true) {
+						acceleration = 1;
 					}
 					if (collision_stack() == true) {
-						gravity_f = 0;
+						acceleration = 0;
 						move_obj(0, 1);
 						//player_y -= 1;
 					}
@@ -138,7 +137,7 @@ public class Movement {
 				if (i == false) {
 					move_obj(0, jump_f);
 					//player_y -= jump_f;
-					jump_f -= gravity;
+					jump_f -= gravity_acceleration;
 				}
 				if (jump_f <= 0) {
 					//System.out.println("落下");
