@@ -3,6 +3,11 @@ package game.Bullet;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * @author Nissan
+ *
+ */
 abstract public class Bullet {
 	BufferedImage img;
 	public int x;
@@ -11,12 +16,22 @@ abstract public class Bullet {
 	int W, H;
 	int speed = 20;
 
+	/**
+	 * 玉を作成します。通常はこのクラスを継承して作成します。
+	 * @param tx X座標
+	 * @param ty Y座標
+	 * @param tangle 角度(度)
+	 */
 	public Bullet(int tx, int ty, double tangle) {
 		x = tx;
 		y = ty;
 		angle = tangle;
 	}
 
+	/**
+	 * 玉の座標(配列)を返します。
+	 * @return 座標X,Y
+	 */
 	public int[] getPos() {
 		int[] data = {
 				this.x, this.y
@@ -24,6 +39,10 @@ abstract public class Bullet {
 		return data;
 	};
 
+	/**
+	 * 角度を返します。
+	 * @return 角度(度)
+	 */
 	public double getAngle() {
 		return this.angle;
 	}

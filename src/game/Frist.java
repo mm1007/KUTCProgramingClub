@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 public class Frist {
-	public static float[] object_scale = new float[1000];
-	public static int[][] object = new int[1000][3];
+	//public static float[] object_scale = new float[1000];
+	//public static int[][] object = new int[1000][3];
 	public static String[] object_path = new String[1000];
 	public static String[] enemy_path = new String[1000];
 	public static int[][] enemy = new int[1000][3];
@@ -22,8 +23,11 @@ public class Frist {
 	public static Image offImage;
 	public static int width = 1080;
 	public static int height = 720;
-	public static String file = new File("src\\game").getAbsolutePath() + "\\";
+	public static int stageW = 5760;
+	public static int stageH = 2160;
+	public static String file = new File("data").getAbsolutePath() + "\\";
 	public static Paint pt;
+	public static ArrayList<Object_data> object = new ArrayList<Object_data>();
 
 	public static void main(String[] args) throws IOException {
 		Map_Loader.Load_Map();

@@ -1,5 +1,8 @@
 package game;
 
+import java.awt.Image;
+import java.io.File;
+
 /**
  * 状態を取得もしくは変更します。
  * @author mm1007
@@ -12,6 +15,7 @@ abstract public class Status {
 	 * @return　押されている場合trueを返します。
 	 */
 	public static boolean get_key_press(int KeyCode) {
+		notification(Key.key[KeyCode]);
 		return Key.key[KeyCode];
 	}
 
@@ -20,6 +24,7 @@ abstract public class Status {
 	 * @return 落下速度
 	 */
 	public static int get_acceleration() {
+		notification(Movement.acceleration);
 		return Movement.acceleration;
 	}
 
@@ -37,6 +42,7 @@ abstract public class Status {
 	 * @return 重力加速度
 	 */
 	public static int get_gravity_acceleration() {
+		notification(Movement.gravity_acceleration);
 		return Movement.gravity_acceleration;
 	}
 
@@ -46,5 +52,41 @@ abstract public class Status {
 	 */
 	public static void set_gravity_acceleration(int gravity_acceleration) {
 		Movement.gravity_acceleration = gravity_acceleration;
+	}
+
+	/**
+	 * オブジェクトデータを返します。
+	 * @param index オブジェクト番号
+	 * @return オブジェクトデータ
+	 */
+	public static Object_data get_object_data(int index) {
+		return Frist.object.get(index);
+	}
+
+	/**
+	 * ゲームが読み込んでいる画像を返します。
+	 * @param index 番号
+	 * @return 画像データ
+	 */
+	public static Image get_Image(int index) {
+		return Paint.im[index];
+	}
+
+	/**
+	 * エネミー画像のパスを返します
+	 * @param index 番号
+	 * @return パス(File)
+	 */
+	public static File get_enemy_path(int index) {
+		notification(Frist.enemy_path[index]);
+		return new File(Frist.enemy_path[index]);
+	}
+
+	/**
+	 * ステータス出力用アカウント
+	 * @param info
+	 */
+	static void notification(Object info) {
+		System.out.println("システム:ステータス出力 -> " + info);
 	}
 }

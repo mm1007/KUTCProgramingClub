@@ -4,6 +4,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * 
+ * @author mm1007
+ *
+ */
 public class Mouse implements MouseListener, MouseMotionListener {
 	static int x;
 	static int y;
@@ -29,7 +34,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		// TODO 自動生成されたメソッド・スタブ
 		int x = e.getX() - 10;
 		int y = e.getY() - 30;
-		System.out.println(x + " " + y);
+		System.out.println("システム:マウスクリック -> x:" + x + " y:" + y);
 		if (e.getButton() == 1) {
 			mouse_check[0] = 1;
 			if (x <= 100 && y <= 60) {
