@@ -7,7 +7,7 @@ import java.io.File;
  * 状態を取得もしくは変更します。
  * @author mm1007
  */
-abstract public class Status {
+public class Status {
 
 	/**
 	 * 指定したキーが押されているかbooleanで返します。
@@ -15,7 +15,7 @@ abstract public class Status {
 	 * @return　押されている場合trueを返します。
 	 */
 	public static boolean get_key_press(int KeyCode) {
-		notification(Key.key[KeyCode]);
+		notification("Key:" + KeyCode + " -> " + Key.key[KeyCode]);
 		return Key.key[KeyCode];
 	}
 
@@ -83,7 +83,31 @@ abstract public class Status {
 	}
 
 	/**
-	 * ステータス出力用アカウント
+	 * マウスが押されているか返します。
+	 * @param MouseCode マウスボタンコード
+	 * @return マウスが押されている場合trueを返します。
+	 */
+	public static boolean get_mouse_press(int MouseCode) {
+		notification("Mouse:" + MouseCode + " -> " + Mouse.mousePress[MouseCode]);
+		return Mouse.mousePress[MouseCode];
+	}
+
+	/**
+	 * 指定したボタンの最後に押したもしくは離した位置を返します。
+	 * @param MouseCode マウスボタンコード
+	 * @return マウスの座標{X,Y}を返します。
+	 */
+	public static int[] get_mouse_press_locate(int MouseCode) {
+		notification("Mouse:" + MouseCode + " -> " + "x:" + Mouse.mouse_locate[MouseCode][0] + " y:"
+				+ Mouse.mouse_locate[MouseCode][1]);
+		int locate[] = {
+				Mouse.mouse_locate[MouseCode][0], Mouse.mouse_locate[MouseCode][1]
+		};
+		return locate;
+	}
+
+	/**
+	 * ステータス出力用
 	 * @param info
 	 */
 	static void notification(Object info) {

@@ -84,7 +84,7 @@ public class Map_Loader extends Frist {
 						Movement.colision[x + Frist.object.get(z).x][y + Frist.object.get(z).y] = 1;
 					} catch (ArrayIndexOutOfBoundsException e) {
 						if (first) {
-							System.out.println("ML:注意 オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
+							System.out.println("ML:注意 -> オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
 							first = false;
 						}
 					}
@@ -95,6 +95,7 @@ public class Map_Loader extends Frist {
 		br_obj.close();
 		br_enemy.close();
 	}
+
 }
 
 class Object_data {

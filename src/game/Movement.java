@@ -4,11 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 import java.util.ConcurrentModificationException;
 
-import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import game.Bullet.Bullet;
@@ -30,7 +27,6 @@ public class Movement {
 	public static int player_y = Frist.player_y;
 	static int[][] colision = new int[Frist.stageH][Frist.stageW];
 	static int[] colision_k = new int[4];
-	static int Move_check = 1;
 
 	/**
 	 * 
@@ -47,40 +43,38 @@ public class Movement {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				if (move_c() == true) {
-					if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1) == true) {
-						System.out.println("システム:ジャンプ開始");
-						jump_f = 30;
-						jump_c = true;
-						time2.start();
-					}
-					if (Key.key[KeyEvent.VK_A] && collision_check(2, 10) == false) {
-						move_obj(10, 0);
-					}
-					if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
-						move_obj(-10, 0);
-					}
-					if (collision_check_full(1, acceleration + 1) == false && jump_c == false) {
-						move_obj(0, -acceleration);
-						acceleration += gravity_acceleration;
-					} else if (collision_check_full(1, acceleration) == true) {
-						if (collision_check(1, 1) != true) {
-							int remain = 2;
-							while (true) {
-								if (collision_check(1, remain) == true) {
-									move_obj(0, -remain + 1);
-									break;
-								}
-								remain++;
+				if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1) == true) {
+					System.out.println("システム:ジャンプ開始");
+					jump_f = 30;
+					jump_c = true;
+					time2.start();
+				}
+				if (Key.key[KeyEvent.VK_A] && collision_check(2, 10) == false) {
+					move_obj(10, 0);
+				}
+				if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
+					move_obj(-10, 0);
+				}
+				if (collision_check_full(1, acceleration + 1) == false && jump_c == false) {
+					move_obj(0, -acceleration);
+					acceleration += gravity_acceleration;
+				} else if (collision_check_full(1, acceleration) == true) {
+					if (collision_check(1, 1) != true) {
+						int remain = 2;
+						while (true) {
+							if (collision_check(1, remain) == true) {
+								move_obj(0, -remain + 1);
+								break;
 							}
+							remain++;
 						}
-						acceleration = 1;
 					}
-					if (collision_stack() == true) {
-						acceleration = 0;
-						move_obj(0, 1);
-						//player_y -= 1;
-					}
+					acceleration = 1;
+				}
+				if (collision_stack() == true) {
+					acceleration = 0;
+					move_obj(0, 1);
+					//player_y -= 1;
 				}
 			} catch (ArrayIndexOutOfBoundsException e1) {
 				System.out.println("マップ範囲外に移動しようとしている");
@@ -246,7 +240,7 @@ public class Movement {
 	 * 
 	 * @param g
 	 */
-	static void menu(Graphics g) {
+	/*static void menu(Graphics g) {
 		try {
 			if (Mouse.select[0] == 0) {
 				g.drawImage(ImageIO.read(new File(Frist.file + "menu.png")), 0, 0, 100, 60, Frist.pt);
@@ -255,19 +249,7 @@ public class Movement {
 			}
 		} catch (IOException e) {
 		}
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	boolean move_c() {
-		if (Move_check == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	}*/
 
 	/**
 	 * 
@@ -296,4 +278,5 @@ public class Movement {
 	static void graple(Graphics g) {
 		g.drawLine(0, 0, 100, 100);
 	}
+
 }

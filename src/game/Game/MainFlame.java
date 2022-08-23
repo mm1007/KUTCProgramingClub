@@ -15,7 +15,7 @@ public class MainFlame extends JFrame {
 	public MainCanvas canvas = new MainCanvas();
 
 	public MainFlame() {
-		System.out.println(path);
+		//System.out.println(path);
 		setTitle("アクションゲーム");
 		setResizable(false);
 		setSize(WIDTH, HEIGHT);

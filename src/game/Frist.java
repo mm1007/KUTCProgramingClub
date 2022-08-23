@@ -40,8 +40,8 @@ public class Frist {
 		pt.setBackground(Color.white);
 		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 		jf.addKeyListener(ky);
-		jf.addMouseMotionListener(ms);
-		jf.addMouseListener(ms);
+		pt.addMouseMotionListener(ms);
+		pt.addMouseListener(ms);
 		jf.add(pt);
 		jf.setVisible(true);
 	}

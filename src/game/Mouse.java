@@ -10,48 +10,45 @@ import java.awt.event.MouseMotionListener;
  *
  */
 public class Mouse implements MouseListener, MouseMotionListener {
+
 	static int x;
 	static int y;
-	int start = 0;
-	MouseEvent e1;
 
-	public static int[] select = {
-			0
-	};
+	protected static boolean mousePress[] = new boolean[10];
+	protected static int[][] mouse_locate = new int[10][2];
 
-	public static int[] mouse_check = {
-			0, 0
-	};
+	private static mouse call_interface;
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
-		int x = e.getX() - 10;
-		int y = e.getY() - 30;
-		System.out.println("システム:マウスクリック -> x:" + x + " y:" + y);
-		if (e.getButton() == 1) {
-			mouse_check[0] = 1;
-			if (x <= 100 && y <= 60) {
-				Movement.Move_check = Movement.Move_check == 1 ? 0 : 1;
-			}
-		} else if (e.getButton() == 3) {
-			mouse_check[1] = 1;
+		int x = e.getX();
+		int y = e.getY();
+		System.out.println("システム:マウスプレス -> ボタン:" + e.getButton() + " x:" + x + " y:" + y);
+		mousePress[e.getButton()] = true;
+		mouse_locate[e.getButton()][0] = x;
+		mouse_locate[e.getButton()][1] = y;
+		if (call_interface != null) {
+			call_interface.mouse_Pressed();
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
-		if (e.getButton() == 1) {
-			mouse_check[0] = 0;
-		} else if (e.getButton() == 3) {
-			mouse_check[1] = 0;
+		int x = e.getX();
+		int y = e.getY();
+		System.out.println("システム:マウスリリース -> ボタン:" + e.getButton() + " x:" + x + " y:" + y);
+		mousePress[e.getButton()] = false;
+		mouse_locate[e.getButton()][0] = x;
+		mouse_locate[e.getButton()][1] = y;
+		if (call_interface != null) {
+			call_interface.mouse_Pressed();
 		}
 	}
 
@@ -65,14 +62,14 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		// TODO 自動生成されたメソッド・スタブ
 	}
 
-	public static void select_c() {
+	/*public static void select_c() {
 		// TODO 自動生成されたメソッド・スタブ
 		if (x <= 100 && y <= 60) {
 			select[0] = 1;
 		} else {
 			select[0] = 0;
 		}
-	}
+	}*/
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -85,6 +82,24 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		// TODO 自動生成されたメソッド・スタブ
 		x = e.getX() - 10;
 		y = e.getY() - 30;
+	}
+
+	/**
+	 * マウスリスナーをセットします。
+	 * @param set mouseクラス
+	 */
+	public static void setMouseListener(mouse set) {
+		call_interface = set;
+	}
+
+	public static void removeMouseListener() {
+		call_interface = null;
+	}
+
+	interface mouse {
+		public void mouse_Pressed();
+
+		public void mouse_Released();
 	}
 
 }

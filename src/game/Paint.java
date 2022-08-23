@@ -41,8 +41,8 @@ class Paint extends JPanel {
 		paint_all(gv);
 		Menu.O_Menu(gv);
 		mc.canvas.paint_2(gv);
-		Movement.menu(gv);
-		Mouse.select_c();
+		//Movement.menu(gv);
+		//Mouse.select_c();
 		g.drawImage(Frist.offImage, 0, 0, this);
 		//System.out.println(System.currentTimeMillis() - time_s);
 	}

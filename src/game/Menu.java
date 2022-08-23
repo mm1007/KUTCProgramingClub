@@ -1,13 +1,8 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Menu {
 	int[] mid_frame = {
@@ -15,7 +10,7 @@ public class Menu {
 	};
 
 	void O_Menu(Graphics g) {
-		if (Movement.Move_check == 0) {
+		/*if (Movement.Move_check == 0) {
 			try {
 				g.setColor(Color.black);
 				g.fillRect(0, 0, 1080, 720);
@@ -26,7 +21,7 @@ public class Menu {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	int[] mid_img(Image img, int x_y[], ImageObserver io) {
