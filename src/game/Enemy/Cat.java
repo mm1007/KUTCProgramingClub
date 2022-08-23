@@ -1,19 +1,19 @@
 package game.Enemy;
 
-import java.io.File;
-
-import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 import game.Frist;
+import game.Log;
 
 public class Cat extends Enemy {
 	public Cat(int tx, int ty) {
 		super(tx, ty);
 		try {
 			//System.out.println(Frist.enemy_path[Frist.enemy[0][0]]);
-			img = ImageIO.read(new File(Frist.enemy_path[Frist.enemy[0][0]]));
+			img = (BufferedImage) Frist.enemy.get(0).img;
 		} catch (Exception e) {
-			System.out.println("ML:画像データの読み込みに失敗しました。");
+			Log.output_Log(1, null, "画像データの読み込みに失敗しました。");
+			//System.out.println("ML:画像データの読み込みに失敗しました。");
 		}
 		reload_between = 20;
 		sizeinit();

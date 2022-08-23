@@ -3,6 +3,8 @@ package game;
 import java.awt.Image;
 import java.io.File;
 
+import game.Loader.Object_data;
+
 /**
  * 状態を取得もしくは変更します。
  * @author mm1007
@@ -78,8 +80,8 @@ public class Status {
 	 * @return パス(File)
 	 */
 	public static File get_enemy_path(int index) {
-		notification(Frist.enemy_path[index]);
-		return new File(Frist.enemy_path[index]);
+		notification(Frist.enemy_path.get(index));
+		return new File(Frist.enemy_path.get(index));
 	}
 
 	/**
@@ -111,6 +113,7 @@ public class Status {
 	 * @param info
 	 */
 	static void notification(Object info) {
-		System.out.println("システム:ステータス出力 -> " + info);
+		Log.output_Log(0, "ステータス出力", (String) info);
+		//System.out.println("システム:ステータス出力 -> " + info);
 	}
 }

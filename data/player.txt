@@ -1,0 +1,2 @@
+[PLAYER_PATH]
+ドローン1.png

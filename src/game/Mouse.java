@@ -29,7 +29,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		// TODO 自動生成されたメソッド・スタブ
 		int x = e.getX();
 		int y = e.getY();
-		System.out.println("システム:マウスプレス -> ボタン:" + e.getButton() + " x:" + x + " y:" + y);
+		Log.output_Log(0, "マウスプレス", "ボタン:" + e.getButton() + " x:" + x + " y:" + y);
+		//System.out.println("システム:マウスプレス -> ボタン:" + e.getButton() + " x:" + x + " y:" + y);
 		mousePress[e.getButton()] = true;
 		mouse_locate[e.getButton()][0] = x;
 		mouse_locate[e.getButton()][1] = y;
@@ -43,7 +44,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		// TODO 自動生成されたメソッド・スタブ
 		int x = e.getX();
 		int y = e.getY();
-		System.out.println("システム:マウスリリース -> ボタン:" + e.getButton() + " x:" + x + " y:" + y);
+		Log.output_Log(0, "マウスリリース", "ボタン:" + e.getButton() + " x:" + x + " y:" + y);
+		//System.out.println("システム:マウスリリース -> ボタン:" + e.getButton() + " x:" + x + " y:" + y);
 		mousePress[e.getButton()] = false;
 		mouse_locate[e.getButton()][0] = x;
 		mouse_locate[e.getButton()][1] = y;

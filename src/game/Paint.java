@@ -4,17 +4,15 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import game.Game.MainFlame;
 
-class Paint extends JPanel {
+public class Paint extends JPanel {
 	//Thread th = new Thread(this);
 	File fl = new File("");
-	static Image im[] = new Image[Frist.number + 1];
+	public static Image im[] = new Image[Frist.number + 1];
 	Graphics gv;
 	long time_s;
 	Menu Menu = new Menu();
@@ -22,11 +20,6 @@ class Paint extends JPanel {
 
 	Paint() {
 		Movement mv = new Movement();
-		//System.out.println(Frist.jf.getWidth() + " " + Frist.jf.getHeight());
-		//System.out.println(Frist.object_list);
-		Movement.colision_k = new int[] {
-				im[0].getHeight(this), im[0].getHeight(this), im[0].getWidth(this), im[0].getWidth(this)
-		};
 		mc = new MainFlame();
 		mv.time.start();
 	}
@@ -52,10 +45,7 @@ class Paint extends JPanel {
 		for (int x = 0, i = Frist.object_list; x < i; x++) {
 			g.drawImage(Frist.object.get(x).img, Frist.object.get(x).x, Frist.object.get(x).y, this);
 		}
-		try {
-			g.drawImage(ImageIO.read(new File(Frist.object_path[0])), Frist.player_x, Frist.player_y, this);
-		} catch (IOException e) {
-		}
+		g.drawImage(Frist.object.get(0).img, Frist.player_x, Frist.player_y, this);
 		if (Key.key[KeyEvent.VK_SPACE]) {
 			Movement.graple(g);
 		}

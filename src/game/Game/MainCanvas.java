@@ -13,6 +13,7 @@ import game.Bullet.Bullet;
 import game.Bullet.NomalBullet;
 import game.Enemy.Cat;
 import game.Enemy.Enemy;
+import game.Loader.Enemy_data;
 
 public class MainCanvas extends JPanel {
 	private Graphics ct;
@@ -28,8 +29,11 @@ public class MainCanvas extends JPanel {
 	public MainCanvas() {
 		//System.out.println(Frist.enemy_list);
 		setBackground(Color.white);
-		for (int t = 0, i = Frist.enemy_list; t < i; t++) {
+		/*for (int t = 0, i = ; t < i; t++) {
 			enemy.add(new Cat(Frist.enemy[t][1], Frist.enemy[t][2]));
+		}*/
+		for (Enemy_data data : Frist.enemy) {
+			enemy.add(new Cat(data.x, data.y));
 		}
 	}
 
@@ -45,11 +49,11 @@ public class MainCanvas extends JPanel {
 		for (Enemy e : enemy) {
 			e.move();
 			int[] enemy_pos = {
-					Frist.enemy[time][1], Frist.enemy[time][2]
+					Frist.enemy.get(time).x, Frist.enemy.get(time).y
 			};
 			e.draw(g, player_pos, enemy_pos);
 			if (e.attack())
-				bullet.add(new NomalBullet(Frist.enemy[time][1], Frist.enemy[time][2], e.getAngle()));
+				bullet.add(new NomalBullet(Frist.enemy.get(time).x, Frist.enemy.get(time).y, e.getAngle()));
 			time++;
 		}
 		for (Bullet b : bullet) {

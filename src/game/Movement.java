@@ -25,8 +25,8 @@ public class Movement {
 	Timer time2;
 	public static int player_x = Frist.player_x;
 	public static int player_y = Frist.player_y;
-	static int[][] colision = new int[Frist.stageH][Frist.stageW];
-	static int[] colision_k = new int[4];
+	public static int[][] colision = new int[Frist.stageH][Frist.stageW];
+	public static int[] colision_k = new int[4];
 
 	/**
 	 * 
@@ -44,7 +44,8 @@ public class Movement {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1) == true) {
-					System.out.println("システム:ジャンプ開始");
+					Log.output_Log(0, null, "ジャンプ開始");
+					//System.out.println("システム:ジャンプ開始");
 					jump_f = 30;
 					jump_c = true;
 					time2.start();
@@ -77,27 +78,13 @@ public class Movement {
 					//player_y -= 1;
 				}
 			} catch (ArrayIndexOutOfBoundsException e1) {
-				System.out.println("マップ範囲外に移動しようとしている");
+				Log.output_Log(0, null, "マップ範囲外に移動しようとしています");
+				//System.out.println("マップ範囲外に移動しようとしている");
 			}
 			//System.out.println("do");
 			Bullet_c();
 			Frist.pt.repaint();
 		}
-	};
-
-	/**
-	 * 
-	 */
-	int[] x_y = {
-
-			2,
-
-			2,
-
-			1,
-
-			1
-
 	};
 
 	/**
@@ -115,8 +102,8 @@ public class Movement {
 				Frist.object.get(t).y += y;
 			}
 			for (int t = 0, i = Frist.enemy_list; t < i; t++) {
-				Frist.enemy[t][1] += x;
-				Frist.enemy[t][2] += y;
+				Frist.enemy.get(t).x += x;
+				Frist.enemy.get(t).y += y;
 			}
 			for (Bullet b : MainCanvas.bullet) {
 				//MainCanvas.bullet.set(time,
@@ -261,7 +248,8 @@ public class Movement {
 				if (b.getPos()[0] > colision.length || b.getPos()[1] > colision[1].length
 						|| b.getPos()[0] < -colision.length
 						|| b.getPos()[1] < -colision[1].length) {
-					System.out.println("システム:ボールを削除 -> " + time + "番目");
+					Log.output_Log(0, "ボールを削除", time + "番目");
+					//System.out.println("システム:ボールを削除 -> " + time + "番目");
 					MainCanvas.bullet.remove(time);
 				}
 				time++;

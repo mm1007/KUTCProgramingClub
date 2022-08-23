@@ -8,12 +8,18 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import game.Loader.Enemy_data;
+import game.Loader.Loader;
+import game.Loader.Object_data;
+
 public class Frist {
 	//public static float[] object_scale = new float[1000];
 	//public static int[][] object = new int[1000][3];
-	public static String[] object_path = new String[1000];
-	public static String[] enemy_path = new String[1000];
-	public static int[][] enemy = new int[1000][3];
+	public static ArrayList<String> object_path = new ArrayList<String>();
+	public static ArrayList<String> enemy_path = new ArrayList<String>();
+	//public static String[] object_path = new String[1000];
+	//public static String[] enemy_path = new String[1000];
+	//public static int[][] enemy = new int[1000][3];
 	public static int enemy_list;
 	public static int object_list;
 	public static int player_x = 500;
@@ -28,9 +34,11 @@ public class Frist {
 	public static String file = new File("data").getAbsolutePath() + "\\";
 	public static Paint pt;
 	public static ArrayList<Object_data> object = new ArrayList<Object_data>();
+	public static ArrayList<Enemy_data> enemy = new ArrayList<Enemy_data>();
 
 	public static void main(String[] args) throws IOException {
-		Map_Loader.Load_Map();
+		Loader.Load_Map();
+		Loader.Load_Enemy();
 		jf.setBounds(0, 0, width, height);
 		pt = new Paint();
 		Mouse ms = new Mouse();

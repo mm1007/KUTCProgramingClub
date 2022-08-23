@@ -2,3 +2,4 @@ game
 game.Bullet
 game.Enemy
 game.Game
+game.Loader

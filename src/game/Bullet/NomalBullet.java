@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import game.Log;
 import game.Game.MainFlame;
 
 public class NomalBullet extends Bullet {
@@ -13,7 +14,8 @@ public class NomalBullet extends Bullet {
 		try {
 			img = ImageIO.read(new File(MainFlame.path + "\\src\\game\\Image\\Shot.png"));
 		} catch (Exception e) {
-			System.out.println("ML:画像データの読み込みに失敗しました。");
+			Log.output_Log(1, null, "画像データの読み込みに失敗しました。");
+			//System.out.println("ML:画像データの読み込みに失敗しました。");
 		}
 		sizeinit();
 	}
