@@ -1,5 +1,6 @@
 package game.Loader;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,6 +18,10 @@ public class Loader extends Frist {
 	static int time;
 	static String text;
 
+	/**
+	 * マップをロードします。
+	 * @throws IOException
+	 */
 	public static void Load_Map() throws IOException {
 		BufferedReader br_obj_path = new BufferedReader(new FileReader(file + "object_path.txt"));
 		BufferedReader br_obj = new BufferedReader(new FileReader(file + "object.txt"));
@@ -68,15 +73,16 @@ public class Loader extends Frist {
 				}
 			}
 		}
+
 		br_obj_path.close();
 		br_obj.close();
 
-		Movement.colision_k = new int[] {
-				Paint.im[0].getHeight(null), Paint.im[0].getHeight(null), Paint.im[0].getWidth(null),
-				Paint.im[0].getWidth(null)
-		};
 	}
 
+	/**
+	 * 敵をロードします。
+	 * @throws IOException
+	 */
 	public static void Load_Enemy() throws IOException {
 		BufferedReader br_enemy = new BufferedReader(new FileReader(file + "enemy_list.txt"));
 
@@ -114,5 +120,41 @@ public class Loader extends Frist {
 			}
 		}
 		br_enemy.close();
+	}
+
+	/**
+	 * プレイヤーをロードします。
+	 * @throws IOException
+	 */
+	public static void Load_Player() throws IOException {
+
+		BufferedReader br_player = new BufferedReader(new FileReader(file + "player.txt"));
+
+		while (true) {
+			if ((text = br_player.readLine()) != null) {
+				if (text.equals("[PLAYER_PATH]")) {
+					text = br_player.readLine();
+					while (text.indexOf(",") != -1) {
+						int t = Integer.parseInt(text.substring(0, text.indexOf(",")));
+						Frist.player_path.add(t, file + text.substring(text.indexOf(",") + 1));
+						Frist.player.add(new Player_data(t, ImageIO.read(new File(Frist.player_path.get(t)))));
+						text = br_player.readLine();
+						if (text == null)
+							break;
+					}
+				} else
+					break;
+			} else
+				break;
+		}
+
+		Image player_img = Frist.player.get(0).img;
+
+		Movement.colision_k = new int[] {
+				player_img.getHeight(null), player_img.getHeight(null), player_img.getWidth(null),
+				player_img.getWidth(null)
+		};
+
+		br_player.close();
 	}
 }

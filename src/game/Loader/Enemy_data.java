@@ -19,4 +19,26 @@ public class Enemy_data {
 		this.y = y;
 		this.img = img;
 	}
+
+	public int get_Object() {
+		return this.EObject;
+	}
+
+	public int get_X() {
+		return this.x;
+	}
+
+	public int get_Y() {
+		return this.y;
+	}
+
+	/*public float get_Scale() {
+		return this.scale;
+	}*/
+
+	public Image get_Image() {
+		return this.img;
+	}
+	
+	
 }

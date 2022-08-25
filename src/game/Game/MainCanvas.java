@@ -1,6 +1,5 @@
 package game.Game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -26,19 +25,10 @@ public class MainCanvas extends JPanel {
 	public static List<Enemy> enemy = new ArrayList<Enemy>();
 	public static List<Bullet> bullet = new ArrayList<Bullet>();
 
-	public MainCanvas() {
-		//System.out.println(Frist.enemy_list);
-		setBackground(Color.white);
-		/*for (int t = 0, i = ; t < i; t++) {
-			enemy.add(new Cat(Frist.enemy[t][1], Frist.enemy[t][2]));
-		}*/
+	public void init() {
 		for (Enemy_data data : Frist.enemy) {
 			enemy.add(new Cat(data.x, data.y));
 		}
-	}
-
-	public void init() {
-
 	}
 
 	public void paint_2(Graphics g) {
@@ -47,11 +37,11 @@ public class MainCanvas extends JPanel {
 				playerX, playerY
 		};
 		for (Enemy e : enemy) {
-			e.move();
+			e.set_angle();
 			int[] enemy_pos = {
 					Frist.enemy.get(time).x, Frist.enemy.get(time).y
 			};
-			e.draw(g, player_pos, enemy_pos);
+			e.draw(g, enemy_pos);
 			if (e.attack())
 				bullet.add(new NomalBullet(Frist.enemy.get(time).x, Frist.enemy.get(time).y, e.getAngle()));
 			time++;

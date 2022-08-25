@@ -32,8 +32,7 @@ public class Movement {
 	 * 
 	 */
 	Movement() {
-		time = new Timer(1, action_1);
-		time2 = new Timer(1, action_2);
+
 	}
 
 	/**
@@ -42,13 +41,27 @@ public class Movement {
 	ActionListener action_1 = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			/*if (jump_c) {
+				try {
+					boolean i = collision_check_full(0, jump_f);
+					if (i == false) {
+						move_obj(0, jump_f);
+						jump_f -= gravity_acceleration;
+					}
+					if (jump_f <= 0) {
+						jump_c = false;
+					}
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					jump_c = false;
+				}
+			}*/
 			try {
 				if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1) == true) {
 					Log.output_Log(0, null, "ジャンプ開始");
 					//System.out.println("システム:ジャンプ開始");
 					jump_f = 30;
 					jump_c = true;
-					time2.start();
+					//time2.start();
 				}
 				if (Key.key[KeyEvent.VK_A] && collision_check(2, 10) == false) {
 					move_obj(10, 0);
@@ -56,10 +69,21 @@ public class Movement {
 				if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
 					move_obj(-10, 0);
 				}
-				if (collision_check_full(1, acceleration + 1) == false && jump_c == false) {
+				if(jump_c) {
+					boolean i = collision_check_full(0, jump_f);
+					if (i == false) {
+						move_obj(0, jump_f);
+						jump_f -= gravity_acceleration;
+					}
+					if (jump_f <= 0) {
+						acceleration = 0;
+						jump_c = false;
+					}
+				}
+				if (collision_check_full(1, acceleration) == false && jump_c == false) {
 					move_obj(0, -acceleration);
 					acceleration += gravity_acceleration;
-				} else if (collision_check_full(1, acceleration) == true) {
+				} else if (collision_check_full(1, acceleration) == true && jump_c == false) {
 					if (collision_check(1, 1) != true) {
 						int remain = 2;
 						while (true) {
@@ -70,13 +94,13 @@ public class Movement {
 							remain++;
 						}
 					}
-					acceleration = 1;
 				}
 				if (collision_stack() == true) {
 					acceleration = 0;
 					move_obj(0, 1);
 					//player_y -= 1;
 				}
+
 			} catch (ArrayIndexOutOfBoundsException e1) {
 				Log.output_Log(0, null, "マップ範囲外に移動しようとしています");
 				//System.out.println("マップ範囲外に移動しようとしている");

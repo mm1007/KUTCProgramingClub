@@ -25,7 +25,7 @@ abstract public class Enemy {
 		H = img.getHeight();
 	}
 
-	public void move() {
+	public void set_angle() {
 		targetAngle = Math.atan2(Movement.player_y - this.y, Movement.player_x - this.x);
 	}
 
@@ -42,7 +42,7 @@ abstract public class Enemy {
 		return this.targetAngle;
 	}
 
-	public void draw(Graphics g, int[] player_pos, int[] enemy_pos) {
+	public void draw(Graphics g, int enemy_pos[]) {
 		g.drawImage(img, enemy_pos[0], enemy_pos[1], null);
 	}
 }

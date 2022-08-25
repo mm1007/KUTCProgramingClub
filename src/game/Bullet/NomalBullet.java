@@ -4,15 +4,15 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import game.Frist;
 import game.Log;
-import game.Game.MainFlame;
 
 public class NomalBullet extends Bullet {
 	public NomalBullet(int tx, int ty, double tangle) {
 		super(tx, ty, tangle);
 		// TODO 自動生成されたコンストラクター・スタブ
 		try {
-			img = ImageIO.read(new File(MainFlame.path + "\\src\\game\\Image\\Shot.png"));
+			img = ImageIO.read(new File(Frist.file + "Shot.png"));
 		} catch (Exception e) {
 			Log.output_Log(1, null, "画像データの読み込みに失敗しました。");
 			//System.out.println("ML:画像データの読み込みに失敗しました。");

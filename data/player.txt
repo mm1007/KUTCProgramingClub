@@ -1,2 +1,2 @@
 [PLAYER_PATH]
-ドローン1.png
+0,標識.png
