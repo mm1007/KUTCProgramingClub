@@ -16,18 +16,16 @@ import game.Game.MainCanvas;
  * @author mm1007
  *
  */
-public class Movement {
+public class Movement extends Collision {
 	boolean jump_c = false;
 	int jump_f = 0;
 	static int gravity_acceleration = 1;
 	static int acceleration = 0;
 	Timer time;
 	Timer time2;
-	public static int player_x = Frist.player_x;
-	public static int player_y = Frist.player_y;
-	public static int[][] colision = new int[Frist.stageH][Frist.stageW];
-	public static int[] colision_k = new int[4];
-
+	public static int player_x;
+	public static int player_y;
+	
 	/**
 	 * 
 	 */
@@ -56,7 +54,8 @@ public class Movement {
 				}
 			}*/
 			try {
-				if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1) == true) {
+				if (Key.key[KeyEvent.VK_W] && jump_c == false && collision_check(1, 1)
+						&& !collision_check(0, 1)) {
 					Log.output_Log(0, null, "ジャンプ開始");
 					//System.out.println("システム:ジャンプ開始");
 					jump_f = 30;
@@ -69,7 +68,7 @@ public class Movement {
 				if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
 					move_obj(-10, 0);
 				}
-				if(jump_c) {
+				if (jump_c) {
 					boolean i = collision_check_full(0, jump_f);
 					if (i == false) {
 						move_obj(0, jump_f);
@@ -95,14 +94,15 @@ public class Movement {
 						}
 					}
 				}
-				if (collision_stack() == true) {
+				/*if (collision_stack() == true) {
 					acceleration = 0;
 					move_obj(0, 1);
 					//player_y -= 1;
-				}
+				}*/
 
 			} catch (ArrayIndexOutOfBoundsException e1) {
-				Log.output_Log(0, null, "マップ範囲外に移動しようとしています");
+				e1.printStackTrace();
+				//Log.output_Log(0, null, e1.toString());
 				//System.out.println("マップ範囲外に移動しようとしている");
 			}
 			//System.out.println("do");
@@ -125,7 +125,7 @@ public class Movement {
 				Frist.object.get(t).x += x;
 				Frist.object.get(t).y += y;
 			}
-			for (int t = 0, i = Frist.enemy_list; t < i; t++) {
+			for (int t = 0, i = Frist.enemy.size(); t < i; t++) {
 				Frist.enemy.get(t).x += x;
 				Frist.enemy.get(t).y += y;
 			}
@@ -174,50 +174,6 @@ public class Movement {
 	};
 
 	/**
-	 * 指定した方向、距離に当たり判定があるか判断します。(途中に当たり判定があるかは確認しません)
-	 * @param key 方向
-	 * @param move 距離
-	 * @return 当たり判定がある場合trueを返します。
-	 */
-	public boolean collision_check(int key, int move) {
-		for (int t = 0, i = colision_k[key]; t < i; t++) {
-			if (key == 0 && colision[player_x + t][player_y - move] == 1) {
-				return true;
-			} else if (key == 1 && colision[player_x + t][player_y + colision_k[key] + move] == 1) {
-				return true;
-			} else if (key == 2 && colision[player_x - move][player_y + t] == 1) {
-				return true;
-			} else if (key == 3 && colision[player_x + colision_k[key] + move - 1][player_y + t] == 1) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * 指定した方向、距離に当たり判定があるか判断します。(途中に当たり判定があった場合もtrueを返します。)
-	 * @param key 方向
-	 * @param move 距離
-	 * @return 当たり判定がある場合trueを返します。
-	 */
-	public boolean collision_check_full(int key, int move) {
-		for (int k = 1; k < move; k++) {
-			for (int t = 0, i = colision_k[key]; t < i; t++) {
-				if (key == 0 && colision[player_x + t][player_y - k] == 1) {
-					return true;
-				} else if (key == 1 && colision[player_x + t][player_y + colision_k[key] + k] == 1) {
-					return true;
-				} else if (key == 2 && colision[player_x - k][player_y + t] == 1) {
-					return true;
-				} else if (key == 3 && colision[player_x + colision_k[key] + k - 1][player_y + t] == 1) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * 
 	 * @return
 	 */
@@ -247,10 +203,6 @@ public class Movement {
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param g
-	 */
 	/*static void menu(Graphics g) {
 		try {
 			if (Mouse.select[0] == 0) {

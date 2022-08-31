@@ -9,12 +9,12 @@ import java.awt.image.BufferedImage;
  *
  */
 abstract public class Bullet {
-	BufferedImage img;
+	public BufferedImage img;
 	public int x;
 	public int y;
 	double angle;
 	int W, H;
-	int speed = 20;
+	int speed = 5;
 
 	/**
 	 * 玉を作成します。通常はこのクラスを継承して作成します。

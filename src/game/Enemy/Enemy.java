@@ -9,7 +9,7 @@ abstract public class Enemy {
 	BufferedImage img;
 	int x, y;
 	int W, H;
-	static double targetAngle;
+	double targetAngle;
 	int reload;
 	int reload_between;
 	char dir = 'l';

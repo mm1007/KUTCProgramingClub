@@ -3,6 +3,9 @@ package game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.EventListener;
+
+import javax.swing.event.EventListenerList;
 
 /**
  * 
@@ -17,7 +20,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	protected static boolean mousePress[] = new boolean[10];
 	protected static int[][] mouse_locate = new int[10][2];
 
-	private static mouse call_interface;
+	protected EventListenerList ELL = new EventListenerList();
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -34,8 +37,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		mousePress[e.getButton()] = true;
 		mouse_locate[e.getButton()][0] = x;
 		mouse_locate[e.getButton()][1] = y;
-		if (call_interface != null) {
-			call_interface.mouse_Pressed();
+		for (mouseListener mL : ELL.getListeners(mouseListener.class)) {
+			mL.mouse_Pressed();
 		}
 	}
 
@@ -49,8 +52,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		mousePress[e.getButton()] = false;
 		mouse_locate[e.getButton()][0] = x;
 		mouse_locate[e.getButton()][1] = y;
-		if (call_interface != null) {
-			call_interface.mouse_Pressed();
+		for (mouseListener mL : ELL.getListeners(mouseListener.class)) {
+			mL.mouse_Released();
 		}
 	}
 
@@ -87,21 +90,25 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	}
 
 	/**
-	 * マウスリスナーをセットします。
-	 * @param set mouseクラス
+	 * マウスリスナー追加
+	 * @param set 追加するクラス
 	 */
-	public static void setMouseListener(mouse set) {
-		call_interface = set;
+	public void addMouseListener(mouseListener add) {
+		this.ELL.add(mouseListener.class, add);
 	}
 
-	public static void removeMouseListener() {
-		call_interface = null;
+	/**
+	 * マウスリスナー削除
+	 * @param remove　削除するクラス
+	 */
+	public void removeMouseListener(mouseListener remove) {
+		this.ELL.remove(mouseListener.class, remove);
 	}
 
-	interface mouse {
-		public void mouse_Pressed();
+}
 
-		public void mouse_Released();
-	}
+interface mouseListener extends EventListener {
+	public void mouse_Pressed();
 
+	public void mouse_Released();
 }

@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Image;
 import java.io.File;
 
 import game.Loader.Object_data;
@@ -69,10 +68,10 @@ public class Status {
 	 * ゲームが読み込んでいる画像を返します。
 	 * @param index 番号
 	 * @return 画像データ
-	 */
+	 
 	public static Image get_Image(int index) {
 		return Paint.im[index];
-	}
+	}*/
 
 	/**
 	 * エネミー画像のパスを返します
