@@ -14,6 +14,14 @@ public class Object_data {
 	public float scale;
 	public Image img;
 
+	/**
+	 * オブジェクトデータを作成します。
+	 * @param Object オブジェクト画像番号
+	 * @param x x座標
+	 * @param y y座標
+	 * @param scale サイズ
+	 * @param img 画像
+	 */
 	public Object_data(int Object, int x, int y, float scale, Image img) {
 		this.Object = Object;
 		this.x = x;

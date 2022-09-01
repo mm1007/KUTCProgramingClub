@@ -43,7 +43,7 @@ public class Frist {
 	 * ステージの情報を収納しています。
 	 */
 	public static ArrayList<Stage_data> stage = new ArrayList<Stage_data>();
-
+	
 	public static MainCanvas canvas = new MainCanvas();
 	public static JFrame jf = new JFrame("test");
 	public static Image offImage;
@@ -54,12 +54,33 @@ public class Frist {
 	public static Sys_Game sg = new Sys_Game();
 	public static Menu menu = new Menu();
 
+	/**
+	 * プレイヤーの表示X座標
+	 */
 	public static int player_x = 500;
+	/**
+	 * プレイヤーの表示Y座標
+	 */
 	public static int player_y = 300;
+	/**
+	 * ウィンドウサイズ(横)
+	 */
 	public static int width = 1080;
+	/**
+	 * ウィンドウサイズ(縦)
+	 */
 	public static int height = 720;
+	/**
+	 * ステージサイズ(横)
+	 */
 	public static int stageW = 10000;
+	/**
+	 * ステージサイズ(縦)
+	 */
 	public static int stageH = 2160;
+	/**
+	 * データフォルダのパスがString型で収納されています。
+	 */
 	public static String file = new File("data").getAbsolutePath() + "\\";
 
 	public static void main(String[] args) throws Exception {
@@ -78,7 +99,10 @@ public class Frist {
 		//Sys_Game.start();
 	}
 
-	static void addListener() {
+	/**
+	 * リスナーを追加する用のメソッドです。 新たなクラスに独自リスナーなどを実装するときはこのメソッドに追加してからお願いします。
+	 */
+	public static void addListener() {
 		jf.addKeyListener(ky);
 		pt.addMouseMotionListener(ms);
 		pt.addMouseListener(ms);

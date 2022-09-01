@@ -13,6 +13,13 @@ public class Enemy_data {
 	public int EObject, x, y;
 	public Image img;
 
+	/**
+	 * エネミーのデータを作成します。
+	 * @param EObject エネミー番号
+	 * @param x x座標
+	 * @param y y座標
+	 * @param img 画像
+	 */
 	public Enemy_data(int EObject, int x, int y, Image img) {
 		this.EObject = EObject;
 		this.x = x;

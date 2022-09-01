@@ -78,8 +78,17 @@ public class Paint extends JPanel {
 		ELL.add(paintListener.class, remove);
 	}
 
+	/**
+	 * 
+	 * @author mm1007
+	 *
+	 */
 	interface paintListener extends EventListener {
 
+		/**
+		 * 再描画された際に呼び出されます。引数gを使用して追加で描画を行うことができます。
+		 * @param g 
+		 */
 		public void repainted(Graphics g);
 
 	}

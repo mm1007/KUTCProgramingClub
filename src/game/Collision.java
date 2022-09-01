@@ -64,6 +64,11 @@ public class Collision implements paintListener {
 		return false;
 	}
 
+	/**
+	 * 弾丸との当たり判定を行います。当たっている場合はtrueを返し、当たっていない場合はfalseを返します。
+	 * @param Bullet_list 弾丸リスト
+	 * @return 判定結果(boolean)
+	 */
 	public boolean collision_bullet(List<Bullet> Bullet_list) {
 		for (Bullet check : Bullet_list) {
 			int[] pos = check.getPos();

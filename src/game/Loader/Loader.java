@@ -166,6 +166,11 @@ public class Loader extends Frist {
 		br_player.close();
 	}
 
+	/**
+	 * ステージフォルダに収納されているステージをすべてロードします。
+	 * @param file ステージフォルダパス(絶対パス)
+	 * @throws Exception
+	 */
 	public static void Load_StageList(File file) throws Exception {
 
 		stage.add(null);
