@@ -43,7 +43,7 @@ public class Frist {
 	 * ステージの情報を収納しています。
 	 */
 	public static ArrayList<Stage_data> stage = new ArrayList<Stage_data>();
-	
+
 	public static MainCanvas canvas = new MainCanvas();
 	public static JFrame jf = new JFrame("test");
 	public static Image offImage;
@@ -89,14 +89,13 @@ public class Frist {
 		jf.setBounds(0, 0, width, height);
 		pt = new Paint();
 		pt.setBounds(0, 0, width, height);
-		//pt.th.start();
+		// pt.th.start();
 		pt.setBackground(Color.white);
 		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 		jf.add(pt);
 		jf.setVisible(true);
 		dev = new Developer();
 		addListener();
-		//Sys_Game.start();
 	}
 
 	/**

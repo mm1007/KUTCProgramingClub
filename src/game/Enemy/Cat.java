@@ -15,7 +15,7 @@ public class Cat extends Enemy {
 			Log.output_Log(1, null, "画像データの読み込みに失敗しました。");
 			//System.out.println("ML:画像データの読み込みに失敗しました。");
 		}
-		reload_between = 20;
+		reload_between = 30;
 		sizeinit();
 	}
 

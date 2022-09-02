@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package game;
 
@@ -60,10 +60,18 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 		Loader.Load_Player(stage.get(stage_index).StagePath);
 	}
 
+	/**
+	 * チェンジリスナーを追加します。
+	 * @param add チェンジリスナー
+	 */
 	public void addChangeListener(ChangeStatus add) {
 		ELL.add(ChangeStatus.class, add);
 	}
 
+	/**
+	 * チェンジリスナーを削除します。
+	 * @param remove チェンジリスナー
+	 */
 	public void removeChangeListener(ChangeStatus remove) {
 		ELL.remove(ChangeStatus.class, remove);
 	}
@@ -106,10 +114,21 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 
 	}
 
+	/**
+	 * システムに変更があった場合などに呼び出されるメソッドなどがあります。
+	 * @author mm1007
+	 *
+	 */
 	interface ChangeStatus extends EventListener {
 
+		/**
+		 * ゲームが開始された時に呼び出されます。
+		 */
 		public void start();
 
+		/**
+		 * ゲームが知事停止されたときに呼び出されます。
+		 */
 		public void pause();
 
 	}

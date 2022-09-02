@@ -25,16 +25,16 @@ public class Movement extends Collision {
 	Timer time2;
 	public static int player_x;
 	public static int player_y;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	Movement() {
 
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	ActionListener action_1 = new ActionListener() {
 		@Override
@@ -62,10 +62,10 @@ public class Movement extends Collision {
 					jump_c = true;
 					//time2.start();
 				}
-				if (Key.key[KeyEvent.VK_A] && collision_check(2, 10) == false) {
+				if (Key.key[KeyEvent.VK_A] && collision_check_data(-10, 0) == false) {
 					move_obj(10, 0);
 				}
-				if (Key.key[KeyEvent.VK_D] && collision_check(3, 10) == false) {
+				if (Key.key[KeyEvent.VK_D] && collision_check_data(10, 0) == false) {
 					move_obj(-10, 0);
 				}
 				if (jump_c) {
@@ -174,7 +174,7 @@ public class Movement extends Collision {
 	};
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	int jump_last() {
@@ -215,7 +215,7 @@ public class Movement extends Collision {
 	}*/
 
 	/**
-	 * 
+	 *
 	 */
 	void Bullet_c() {
 		try {
@@ -236,7 +236,7 @@ public class Movement extends Collision {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param g
 	 */
 	static void graple(Graphics g) {

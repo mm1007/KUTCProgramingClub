@@ -5,9 +5,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import game.Collision;
 import game.Frist;
@@ -20,6 +23,7 @@ public class Loader extends Frist {
 
 	/**
 	 * マップをロードします。
+	 *
 	 * @throws IOException
 	 */
 	public static void Load_Map(File file) throws Exception {
@@ -33,17 +37,15 @@ public class Loader extends Frist {
 			number = Integer.parseInt(text.substring(0, text.indexOf(",")));
 			object_path.add(number, file + "\\" + text.substring(text.indexOf(",") + 1, text.length()));
 			Log.output_Log(1, "読み込んでいます", file + text.substring(text.indexOf(",") + 1, text.length()));
-			//System.out.println("ML:読み込んでいます -> " + file + text.substring(text.indexOf(",") + 1, text.length()));
+			// System.out.println("ML:読み込んでいます -> " + file +
+			// text.substring(text.indexOf(",") + 1, text.length()));
 		}
-		/*for (int t = 0; t <= number; t++) {
-			try {
-				Paint.im[t] = ImageIO.read(new File(Frist.object_path.get(t)));
-			} catch (IOException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-			//offImage = createImage(Frist.jf.getWidth(), Frist.jf.getHeight());
-		}*/
+		/*
+		 * for (int t = 0; t <= number; t++) { try { Paint.im[t] = ImageIO.read(new
+		 * File(Frist.object_path.get(t))); } catch (IOException e) { // TODO 自動生成された
+		 * catch ブロック e.printStackTrace(); } //offImage =
+		 * createImage(Frist.jf.getWidth(), Frist.jf.getHeight()); }
+		 */
 		while ((text = br_obj.readLine()) != null) {
 			int first_c = text.indexOf(",");
 			int second_c = text.indexOf(",", first_c + 1);
@@ -66,7 +68,7 @@ public class Loader extends Frist {
 					} catch (ArrayIndexOutOfBoundsException e) {
 						if (first) {
 							Log.output_Log(1, "注意", "オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
-							//System.out.println("ML:注意 -> オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
+							// System.out.println("ML:注意 -> オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
 							first = false;
 						}
 					}
@@ -81,6 +83,7 @@ public class Loader extends Frist {
 
 	/**
 	 * 敵をロードします。
+	 *
 	 * @throws IOException
 	 */
 	public static void Load_Enemy(File file) throws Exception {
@@ -128,6 +131,7 @@ public class Loader extends Frist {
 
 	/**
 	 * プレイヤーをロードします。
+	 *
 	 * @throws IOException
 	 */
 	public static void Load_Player(File file) throws Exception {
@@ -158,16 +162,15 @@ public class Loader extends Frist {
 
 		Image player_img = Frist.player.get(0).img;
 
-		Collision.colision_k = new int[] {
-				player_img.getHeight(null), player_img.getHeight(null), player_img.getWidth(null),
-				player_img.getWidth(null)
-		};
+		Collision.colision_k = new int[] { player_img.getHeight(null), player_img.getHeight(null),
+				player_img.getWidth(null), player_img.getWidth(null) };
 
 		br_player.close();
 	}
 
 	/**
 	 * ステージフォルダに収納されているステージをすべてロードします。
+	 *
 	 * @param file ステージフォルダパス(絶対パス)
 	 * @throws Exception
 	 */
@@ -182,5 +185,23 @@ public class Loader extends Frist {
 			}
 		}
 
+	}
+
+	public static File[] Load_Image(File file) {
+		String[] accept_ex = { ".png", ".jpg" };
+		FilenameFilter filter = new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				// TODO 自動生成されたメソッド・スタブ
+				for (String ex : accept_ex) {
+					if (name.indexOf(ex) != -1) {
+						return true;
+					}
+				}
+				return false;
+			}
+
+		};
+		return file.listFiles(filter);
 	}
 }
