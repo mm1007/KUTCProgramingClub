@@ -38,7 +38,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		mouse_locate[e.getButton()][0] = x;
 		mouse_locate[e.getButton()][1] = y;
 		for (mouseListener mL : ELL.getListeners(mouseListener.class)) {
-			mL.mouse_Pressed();
+			mL.mouse_Pressed(e);
 		}
 	}
 
@@ -53,7 +53,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		mouse_locate[e.getButton()][0] = x;
 		mouse_locate[e.getButton()][1] = y;
 		for (mouseListener mL : ELL.getListeners(mouseListener.class)) {
-			mL.mouse_Released();
+			mL.mouse_Released(e);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 }
 
 interface mouseListener extends EventListener {
-	public void mouse_Pressed();
+	public void mouse_Pressed(MouseEvent e);
 
-	public void mouse_Released();
+	public void mouse_Released(MouseEvent e);
 }

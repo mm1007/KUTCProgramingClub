@@ -22,7 +22,7 @@ public class Key implements KeyListener {
 		key[e.getKeyCode()] = true;
 		Log.output_Log(0, "キープレス", "キー:" + e.getKeyCode());
 		for (keyListener kL : ELL.getListeners(keyListener.class)) {
-			kL.keyPressed();
+			kL.keyPressed(e);
 		}
 	}
 
@@ -31,10 +31,10 @@ public class Key implements KeyListener {
 		key[e.getKeyCode()] = false;
 		Log.output_Log(0, "キーリリース", "キー:" + e.getKeyCode());
 		for (keyListener kL : ELL.getListeners(keyListener.class)) {
-			kL.keyReleased();
+			kL.keyReleased(e);
 		}
 	}
-	
+
 	/**
 	 * キーリスナー追加
 	 * @param add 追加するクラス
@@ -55,8 +55,8 @@ public class Key implements KeyListener {
 
 interface keyListener extends EventListener {
 
-	public void keyPressed();
+	public void keyPressed(KeyEvent e);
 
-	public void keyReleased();
+	public void keyReleased(KeyEvent e);
 
 }

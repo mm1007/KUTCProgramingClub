@@ -16,7 +16,6 @@ public class Paint extends JPanel {
 	//public static Image im[] = new Image[Frist.object_path.size()];
 	Graphics gv;
 	long time_s, time_back;
-	Menu Menu = new Menu();
 	MainFlame mc;
 	Movement mv;
 
@@ -59,7 +58,7 @@ public class Paint extends JPanel {
 		if (Key.key[KeyEvent.VK_SPACE]) {
 			Movement.graple(g);
 		}
-		
+
 	}
 
 	/**

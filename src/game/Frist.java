@@ -52,7 +52,7 @@ public class Frist {
 	public static Key ky = new Key();
 	public static Developer dev;
 	public static Sys_Game sg = new Sys_Game();
-	public static Menu menu = new Menu();
+	public static Menu menu;
 
 	/**
 	 * プレイヤーの表示X座標
@@ -88,8 +88,8 @@ public class Frist {
 		Sys_Game.select_stage(5);
 		jf.setBounds(0, 0, width, height);
 		pt = new Paint();
+		menu = new Menu();
 		pt.setBounds(0, 0, width, height);
-		// pt.th.start();
 		pt.setBackground(Color.white);
 		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 		jf.add(pt);

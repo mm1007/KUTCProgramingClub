@@ -5,6 +5,7 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.EventListener;
 
@@ -55,9 +56,23 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 	 * @throws IOException
 	 */
 	public static void select_stage(int stage_index) throws Exception {
+		stage_reset();
 		Loader.Load_Map(stage.get(stage_index).StagePath);
 		Loader.Load_Enemy(stage.get(stage_index).StagePath);
 		Loader.Load_Player(stage.get(stage_index).StagePath);
+	}
+
+	/**
+	 * 読み込まれているすべての情報を初期化します。
+	 */
+	public static void stage_reset() {
+		object_path.clear();
+		object.clear();
+		enemy_path.clear();
+		enemy.clear();
+		player_path.clear();
+		player.clear();
+		Collision.colision = new int[stageH][stageW];
 	}
 
 	/**
@@ -77,7 +92,7 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 	}
 
 	@Override
-	public void keyPressed() {
+	public void keyPressed(KeyEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 		if (Key.key[KeyEvent.VK_ESCAPE]) {
 			if (Start_Game) {
@@ -91,7 +106,7 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 	}
 
 	@Override
-	public void keyReleased() {
+	public void keyReleased(KeyEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
@@ -103,13 +118,13 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 	}
 
 	@Override
-	public void mouse_Pressed() {
+	public void mouse_Pressed(MouseEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
-	public void mouse_Released() {
+	public void mouse_Released(MouseEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}

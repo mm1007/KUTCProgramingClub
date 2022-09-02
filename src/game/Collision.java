@@ -21,7 +21,9 @@ public class Collision implements paintListener {
 	 * @return 当たり判定がある場合trueを返します。
 	 */
 	public boolean collision_check(int key, int move) {
-		int[] convert = { 2, 3, 0, 1 };
+		int[] convert = {
+				2, 3, 0, 1
+		};
 		for (int t = 0, i = colision_k[convert[key]]; t < i; t++) {
 			if (key == 0 && colision[Movement.player_x + t][Movement.player_y - move] == 1) {
 				return true;
@@ -45,7 +47,9 @@ public class Collision implements paintListener {
 	 * @return 当たり判定がある場合trueを返します。
 	 */
 	public boolean collision_check_full(int key, int move) {
-		int[] convert = { 2, 3, 0, 1 };
+		int[] convert = {
+				2, 3, 0, 1
+		};
 		for (int k = 1; k < move; k++) {
 			for (int t = 0, i = colision_k[convert[key]]; t < i; t++) {
 				if (key == 0 && colision[Movement.player_x + t][Movement.player_y - k] == 1) {
@@ -72,11 +76,20 @@ public class Collision implements paintListener {
 	 */
 	public boolean collision_check_data(int X, int Y) {
 		for (Object_data obj : Frist.object) {
-			int[] pos = { obj.x, obj.y };
-			int[] radius = { obj.img.getWidth(null) / 2, obj.img.getHeight(null) / 2 };
-			int[] mid = { pos[0] + radius[0], pos[1] + radius[1] };
-			int[] minDis = { radius[0] + colision_k[2] / 2, radius[1] + colision_k[2] / 2 };
-			int[] Dis = Vector.distance(mid[0], mid[1], Frist.player_x + colision_k[2], Frist.player_y + colision_k[0]);
+			int[] pos = {
+					obj.x - X, obj.y - Y
+			};
+			int[] radius = {
+					obj.img.getWidth(null) / 2, obj.img.getHeight(null) / 2
+			};
+			int[] mid = {
+					pos[0] + radius[0], pos[1] + radius[1]
+			};
+			int[] minDis = {
+					radius[0] + colision_k[2] / 2, radius[1] + colision_k[0] / 2
+			};
+			int[] Dis = Vector.distance(mid[0], mid[1], Frist.player_x + colision_k[2] / 2,
+					Frist.player_y + colision_k[0] / 2);
 			if (Dis[0] >= minDis[0])
 				continue;
 			if (Dis[1] >= minDis[1])
@@ -95,14 +108,39 @@ public class Collision implements paintListener {
 	 */
 	public boolean collision_check_data_full(int X, int Y) {
 		for (Object_data obj : Frist.object) {
-			int[] radius = { obj.img.getWidth(null) / 2, obj.img.getHeight(null) / 2 };
-			int[] minDis = { radius[0] + colision_k[2] / 2, radius[1] + colision_k[2] / 2 };
-			for (int x = 1; x < X; x++) {
-				for (int y = 1; y < Y; y++) {
-					int[] pos = { obj.x - x, obj.y - y };
-					int[] mid = { pos[0] + radius[0], pos[1] + radius[1] };
-					int[] Dis = Vector.distance(mid[0], mid[1], Frist.player_x + colision_k[2],
-							Frist.player_y + colision_k[0]);
+			int[] radius = {
+					obj.img.getWidth(null) / 2, obj.img.getHeight(null) / 2
+			};
+			int[] minDis = {
+					radius[0] + colision_k[2] / 2, radius[1] + colision_k[0] / 2
+			};
+			if (X == 0) {
+				int y = 0;
+				while (true) {
+					int[] pos = {
+							obj.x, obj.y - y
+					};
+					int[] mid = {
+							pos[0] + radius[0], pos[1] + radius[1]
+					};
+					int[] Dis = Vector.distance(mid[0], mid[1], Frist.player_x + colision_k[2] / 2,
+							Frist.player_y + colision_k[0] / 2);
+					if (Dis[0] >= minDis[0])
+						continue;
+					if (Dis[1] >= minDis[1])
+						continue;
+					return true;
+				}
+			} else if (Y == 0) {
+				for (int x = 1; x < X; x++) {
+					int[] pos = {
+							obj.x - x, obj.y
+					};
+					int[] mid = {
+							pos[0] + radius[0], pos[1] + radius[1]
+					};
+					int[] Dis = Vector.distance(mid[0], mid[1], Frist.player_x + colision_k[2] / 2,
+							Frist.player_y + colision_k[0] / 2);
 					if (Dis[0] >= minDis[0])
 						continue;
 					if (Dis[1] >= minDis[1])
@@ -112,6 +150,7 @@ public class Collision implements paintListener {
 			}
 		}
 		return false;
+
 	}
 
 	/**
@@ -123,10 +162,14 @@ public class Collision implements paintListener {
 	public boolean collision_bullet(List<Bullet> Bullet_list) {
 		for (Bullet check : Bullet_list) {
 			int[] pos = check.getPos();
-			int[] radius = { check.img.getWidth() / 2, check.img.getHeight() / 2 };
+			int[] radius = {
+					check.img.getWidth() / 2, check.img.getHeight() / 2
+			};
 			pos[0] += radius[0];
 			pos[1] += radius[1];
-			int minDis[] = { radius[0] + colision_k[2] / 2, radius[1] + colision_k[0] / 2 };
+			int minDis[] = {
+					radius[0] + colision_k[2] / 2, radius[1] + colision_k[0] / 2
+			};
 			int Distance[] = Vector.distance(pos[0], pos[1], Frist.player_x + colision_k[2] / 2,
 					Frist.player_y + colision_k[0] / 2);
 

@@ -42,7 +42,7 @@ public class Developer implements keyListener, paintListener {
 	}
 
 	@Override
-	public void keyPressed() {
+	public void keyPressed(KeyEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 		if (Key.key[KeyEvent.VK_F3]) {
 			EnableDev = EnableDev ? false : true;
@@ -52,7 +52,7 @@ public class Developer implements keyListener, paintListener {
 	}
 
 	@Override
-	public void keyReleased() {
+	public void keyReleased(KeyEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
