@@ -1,7 +1,6 @@
 package game.Game;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +14,6 @@ import game.Enemy.Enemy;
 import game.Loader.Enemy_data;
 
 public class MainCanvas extends JPanel {
-	private Graphics ct;
-	private Image buf;
 
 	int x = 10;
 	int playerX, playerY;
@@ -26,6 +23,7 @@ public class MainCanvas extends JPanel {
 	public static List<Bullet> bullet = new ArrayList<Bullet>();
 
 	public void init() {
+		enemy.clear();
 		for (Enemy_data data : Frist.enemy) {
 			enemy.add(new Cat(data.x, data.y));
 		}

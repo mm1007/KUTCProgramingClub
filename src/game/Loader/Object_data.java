@@ -10,7 +10,7 @@ import java.awt.Image;
  *
  */
 public class Object_data {
-	public int Object, x, y;
+	public int Object, x, y, sWidth, sHight;
 	public float scale;
 	public Image img;
 
@@ -19,13 +19,17 @@ public class Object_data {
 	 * @param Object オブジェクト画像番号
 	 * @param x x座標
 	 * @param y y座標
+	 * @param sWidth スケールされた幅
+	 * @param sHight スケールされた高さ
 	 * @param scale サイズ
 	 * @param img 画像
 	 */
-	public Object_data(int Object, int x, int y, float scale, Image img) {
+	public Object_data(int Object, int x, int y, float scale, int sWidth, int sHight, Image img) {
 		this.Object = Object;
 		this.x = x;
 		this.y = y;
+		this.sWidth = sWidth;
+		this.sHight = sHight;
 		this.scale = scale;
 		this.img = img;
 	}

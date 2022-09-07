@@ -9,8 +9,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import game.Collision;
 import game.Frist;
@@ -56,11 +54,29 @@ public class Loader extends Frist {
 			int Y = Integer.parseInt(text.substring(second_c + 1, third_c).trim());
 			float Scale = Float.parseFloat(text.substring(third_c + 1, fourth_c).trim());
 			Image img = ImageIO.read(new File(Frist.object_path.get(Object)));
-			object.add(new Object_data(Object, X, Y, Scale, img));
+			int sWidth = (int) (img.getWidth(null) * Scale);
+			int sHight = (int) (img.getHeight(null) * Scale);
+			System.out.println(sWidth + " " + sHight);
+			object.add(new Object_data(Object, X, Y, Scale, sWidth, sHight, img));
 			time++;
 		}
 		boolean first = true;
-		for (int z = 0, i = Frist.object.size(); z < i; z++) {
+		for (Object_data select : Frist.object) {
+			for (int x = 0; x < select.sWidth; x++) {
+				for (int y = 0; y < select.sHight; y++) {
+					try {
+						Collision.colision[x + select.x][y + select.y] = 1;
+					} catch (ArrayIndexOutOfBoundsException e) {
+						if (first) {
+							Log.output_Log(1, "注意", "オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
+							// System.out.println("ML:注意 -> オブジェクトが場外が場外にある、もしくははみ出しているので当たり判定の設定をスキップします");
+							first = false;
+						}
+					}
+				}
+			}
+		}
+		/*for (int z = 0, i = Frist.object.size(); z < i; z++) {
 			for (int x = 0; x < Frist.object.get(z).img.getWidth(null); x++) {
 				for (int y = 0; y < Frist.object.get(z).img.getHeight(null); y++) {
 					try {
@@ -74,7 +90,7 @@ public class Loader extends Frist {
 					}
 				}
 			}
-		}
+		}*/
 
 		br_obj_path.close();
 		br_obj.close();
@@ -162,8 +178,10 @@ public class Loader extends Frist {
 
 		Image player_img = Frist.player.get(0).img;
 
-		Collision.colision_k = new int[] { player_img.getHeight(null), player_img.getHeight(null),
-				player_img.getWidth(null), player_img.getWidth(null) };
+		Collision.colision_k = new int[] {
+				player_img.getHeight(null), player_img.getHeight(null),
+				player_img.getWidth(null), player_img.getWidth(null)
+		};
 
 		br_player.close();
 	}
@@ -188,7 +206,9 @@ public class Loader extends Frist {
 	}
 
 	public static File[] Load_Image(File file) {
-		String[] accept_ex = { ".png", ".jpg" };
+		String[] accept_ex = {
+				".png", ".jpg"
+		};
 		FilenameFilter filter = new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {

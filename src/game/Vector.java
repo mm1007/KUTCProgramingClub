@@ -51,4 +51,59 @@ class Point {
 		this.x = x;
 		this.y = y;
 	}
+
+	public Point add(Point add) {
+
+		Point base = this;
+
+		return new Point(this.x + add.x, this.y + add.y);
+
+	}
+
+	public Point sub(Point sub) {
+
+		Point base = this;
+
+		return new Point(this.x - base.x, this.y - base.y);
+
+	}
+
+}
+
+class Vector2 {
+
+	Point start, direction, end;
+
+	Vector2(Point start, Point end) {
+
+		this.start = start;
+		this.direction = end.sub(start);
+		this.end = end;
+
+	}
+
+	public Point intersection(Vector2 intersection) {
+
+		Vector2 base = this;
+
+		var t1 = base.direction.x / base.direction.y;
+		var t2 = intersection.direction.x / intersection.direction.y;
+		var x1 = base.start.x;
+		var x2 = intersection.start.x;
+		var y1 = base.start.y;
+		var y2 = intersection.start.y;
+
+		var solveX = (t1 * x1 - t2 * x2 - y1 + y2) / (t1 - t2);
+		var solveY = t1 * (solveX - x1) + y1;
+
+		if (solveX > Math.min(base.start.x, base.end.x) &&
+				solveX < Math.max(base.start.x, base.end.x) &&
+				solveX > Math.min(intersection.start.x, intersection.end.x) &&
+				solveX < Math.max(intersection.start.x, intersection.end.x))
+			return new Point(solveX, solveY);
+
+		return null;
+
+	}
+
 }

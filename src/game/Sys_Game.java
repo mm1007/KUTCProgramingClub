@@ -60,6 +60,9 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 		Loader.Load_Map(stage.get(stage_index).StagePath);
 		Loader.Load_Enemy(stage.get(stage_index).StagePath);
 		Loader.Load_Player(stage.get(stage_index).StagePath);
+		Movement.player_x = Frist.player_x;
+		Movement.player_y = Frist.player_y;
+		Frist.canvas.init();
 	}
 
 	/**
@@ -70,6 +73,7 @@ public class Sys_Game extends Frist implements keyListener, mouseListener, paint
 		object.clear();
 		enemy_path.clear();
 		enemy.clear();
+		canvas.init();
 		player_path.clear();
 		player.clear();
 		Collision.colision = new int[stageH][stageW];

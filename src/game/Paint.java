@@ -10,6 +10,7 @@ import javax.swing.Timer;
 import javax.swing.event.EventListenerList;
 
 import game.Game.MainFlame;
+import game.Loader.Object_data;
 
 public class Paint extends JPanel {
 	File fl = new File("");
@@ -22,10 +23,7 @@ public class Paint extends JPanel {
 	protected EventListenerList ELL = new EventListenerList();
 
 	Paint() {
-		Movement.player_x = Frist.player_x;
-		Movement.player_y = Frist.player_y;
 		mv = new Movement();
-		Frist.canvas.init();
 		mc = new MainFlame();
 		Frist.jf.add(Frist.canvas);
 		mv.time = new Timer(10, mv.action_1);
@@ -51,8 +49,8 @@ public class Paint extends JPanel {
 
 	void paint_all(Graphics g) {
 
-		for (int x = 0, i = Frist.object.size(); x < i; x++) {
-			g.drawImage(Frist.object.get(x).img, Frist.object.get(x).x, Frist.object.get(x).y, this);
+		for (Object_data draw : Frist.object) {
+			g.drawImage(draw.img, draw.x, draw.y, draw.sWidth, draw.sHight, this);
 		}
 		g.drawImage(Frist.player.get(0).img, Frist.player_x, Frist.player_y, this);
 		if (Key.key[KeyEvent.VK_SPACE]) {
