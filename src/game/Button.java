@@ -12,12 +12,13 @@ public class Button implements mouseListener {
 
 	EventListenerList ELL = new EventListenerList();
 
+	String Name;
 	int BaseX, BaseY, Width, Hight;
 	float Scale;
 	boolean Enable;
 	Image img;
 
-	Button(int BaseX, int BaseY, float Scale, Image img) {
+	Button(String Name, int BaseX, int BaseY, float Scale, Image img) {
 		this.BaseX = BaseX;
 		this.BaseY = BaseY;
 		this.Scale = Scale;
@@ -48,6 +49,14 @@ public class Button implements mouseListener {
 
 	public int IndexOf(List<Button> search) {
 		return search.indexOf(this);
+	}
+
+	static Button SearchButton(List<Button> List, String Name) {
+		for (Button Search : List) {
+			if (Search.Name.equals(Name))
+				return Search;
+		}
+		return null;
 	}
 
 	public void addActionListener(buttonListener add) {

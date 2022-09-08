@@ -18,16 +18,21 @@ public class Menu implements paintListener, ChangeStatus, buttonListener {
 	};
 
 	File[] button_tex = Loader.Load_Image(new File(Frist.file + "ButtonTex\\Button"));
+	File[] title_texFiles = Loader.Load_Image(new File(Frist.file + "ButtonTex\\Title"));
 
 	ArrayList<Button> Button = new ArrayList<Button>();
+	ArrayList<Button> Title = new ArrayList<Button>();
 
 	Menu() throws IOException {
 		for (int x = 0; x < 2; x++) {
 			for (int y = 0; y < 3; y++) {
-				Button.add(new Button(y * 300, x * 200, 0.5f, ImageIO.read(button_tex[y + 3 * x])));
+				Button.add(
+						new Button(button_tex[y + 3 * x].getName(), y * 300 + 100, x * 200 + 200, 0.5f,
+								ImageIO.read(button_tex[y + 3 * x])));
 				Button.get(y + 3 * x).addActionListener(this);
 			}
 		}
+
 	}
 
 	@Override
